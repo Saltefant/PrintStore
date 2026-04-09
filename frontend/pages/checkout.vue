@@ -19,10 +19,10 @@ async function handleCheckout() {
   loading.value = true
   try {
     await completeCart(shippingAddress)
-    toast.add({ title: 'Ordre gennemført!', color: 'green' })
+    toast.add({ title: t('checkout.order_completed'), color: 'green' })
     router.push('/account')
   } catch (e) {
-    toast.add({ title: 'Noget gik galt', color: 'red' })
+    toast.add({ title: t('common.something_went_wrong'), color: 'red' })
   } finally {
     loading.value = false
   }
@@ -46,14 +46,14 @@ async function handleCheckout() {
               <UInput v-model="shippingAddress.last_name" />
             </UFormGroup>
           </div>
-          <UFormGroup label="Adresse">
+          <UFormGroup :label="t('checkout.address')">
             <UInput v-model="shippingAddress.address_1" />
           </UFormGroup>
           <div class="grid grid-cols-2 gap-4">
-            <UFormGroup label="Postnummer">
+            <UFormGroup :label="t('checkout.postal_code')">
               <UInput v-model="shippingAddress.postal_code" />
             </UFormGroup>
-            <UFormGroup label="By">
+            <UFormGroup :label="t('checkout.city')">
               <UInput v-model="shippingAddress.city" />
             </UFormGroup>
           </div>
@@ -62,7 +62,7 @@ async function handleCheckout() {
 
       <!-- Order Summary -->
       <div>
-        <h2 class="text-xl font-semibold mb-4">Ordreoversigt</h2>
+        <h2 class="text-xl font-semibold mb-4">{{ t('checkout.order_summary') }}</h2>
         <div class="bg-gray-50 rounded-lg p-6 space-y-3">
           <div
             v-for="item in cart?.items"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n()
 defineProps<{
   product: {
     id: string
@@ -28,7 +29,7 @@ defineProps<{
         provider="scaleway"
       />
       <div v-else class="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-        Intet billede
+        {{ t('product.no_image') }}
       </div>
     </div>
     <div class="p-4">

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ ssr: false })
+const { t } = useI18n()
 const { orders, pending } = useOrders()
 </script>
 
 <template>
   <div class="max-w-4xl mx-auto px-6 py-12">
-    <h1 class="text-3xl font-bold mb-8">Dine ordrer</h1>
+    <h1 class="text-3xl font-bold mb-8">{{ t('account.your_orders') }}</h1>
 
     <div v-if="pending" class="animate-pulse space-y-4">
       <div v-for="i in 3" :key="i" class="h-20 bg-gray-200 rounded-lg" />
@@ -33,6 +34,6 @@ const { orders, pending } = useOrders()
         </div>
       </NuxtLink>
     </div>
-    <p v-else class="text-gray-500 text-center py-12">Ingen ordrer endnu</p>
+    <p v-else class="text-gray-500 text-center py-12">{{ t('account.no_orders_yet') }}</p>
   </div>
 </template>

@@ -26,7 +26,7 @@ useSeoMeta({
 
     <!-- Featured Products -->
     <section class="max-w-7xl mx-auto px-6 py-16">
-      <h2 class="text-3xl font-bold text-gray-900 mb-8">Udvalgte tryk</h2>
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">{{ t('home.featured_prints') }}</h2>
       <FeaturedProducts />
     </section>
   </div>

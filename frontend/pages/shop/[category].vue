@@ -14,7 +14,7 @@ useSeoMeta({
 <template>
   <div class="max-w-7xl mx-auto px-6 py-12">
     <NuxtLink to="/shop" class="text-sm text-gray-500 hover:text-gray-700 mb-4 inline-block">
-      ← Tilbage til butik
+      {{ t('shop.back_to_shop') }}
     </NuxtLink>
     <h1 class="text-4xl font-bold text-gray-900 mb-8 capitalize">{{ categoryHandle }}</h1>
 

@@ -8,20 +8,24 @@
   "home": {
     "hero_title": "Art for your walls",
     "hero_subtitle": "Explore our curated collection of art prints",
-    "shop_now": "Shop now"
+    "shop_now": "Shop now",
+    "featured_prints": "Featured prints"
   },
   "shop": {
     "title": "Shop",
     "filter_category": "Category",
     "filter_price": "Price",
     "all_categories": "All categories",
-    "no_products": "No products found"
+    "no_products": "No products found",
+    "back_to_shop": "← Back to shop"
   },
   "product": {
     "add_to_cart": "Add to cart",
     "size": "Size",
     "price": "Price",
-    "description": "Description"
+    "description": "Description",
+    "select_size": "Please select a size",
+    "no_image": "No image"
   },
   "cart": {
     "title": "Your cart",
@@ -34,7 +38,12 @@
     "title": "Checkout",
     "shipping": "Shipping",
     "payment": "Payment",
-    "complete_order": "Complete order"
+    "complete_order": "Complete order",
+    "address": "Address",
+    "postal_code": "Postal code",
+    "city": "City",
+    "order_summary": "Order summary",
+    "order_completed": "Order completed!"
   },
   "account": {
     "login": "Log in",
@@ -44,7 +53,21 @@
     "email": "Email",
     "password": "Password",
     "first_name": "First name",
-    "last_name": "Last name"
+    "last_name": "Last name",
+    "welcome": "Welcome!",
+    "error_try_again": "Error – please try again",
+    "your_orders": "Your orders",
+    "no_orders_yet": "No orders yet",
+    "back_to_orders": "← Back to orders"
+  },
+  "footer": {
+    "description": "Curated art prints for your home.",
+    "links": "Links",
+    "contact": "Contact",
+    "copyright": "© {year} PrintStore. All rights reserved."
+  },
+  "common": {
+    "something_went_wrong": "Something went wrong"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",

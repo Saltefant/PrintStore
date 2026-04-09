@@ -19,9 +19,9 @@ async function handleSubmit() {
     } else {
       await register(form)
     }
-    toast.add({ title: 'Velkommen!', color: 'green' })
+    toast.add({ title: t('account.welcome'), color: 'green' })
   } catch (e) {
-    toast.add({ title: 'Fejl – prøv igen', color: 'red' })
+    toast.add({ title: t('account.error_try_again'), color: 'red' })
   }
 }
 </script>

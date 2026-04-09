@@ -8,20 +8,24 @@
   "home": {
     "hero_title": "Kunst til dine vægge",
     "hero_subtitle": "Udforsk vores kollektion af håndplukkede kunsttryk",
-    "shop_now": "Se butikken"
+    "shop_now": "Se butikken",
+    "featured_prints": "Udvalgte tryk"
   },
   "shop": {
     "title": "Butik",
     "filter_category": "Kategori",
     "filter_price": "Pris",
     "all_categories": "Alle kategorier",
-    "no_products": "Ingen produkter fundet"
+    "no_products": "Ingen produkter fundet",
+    "back_to_shop": "← Tilbage til butik"
   },
   "product": {
     "add_to_cart": "Læg i kurv",
     "size": "Størrelse",
     "price": "Pris",
-    "description": "Beskrivelse"
+    "description": "Beskrivelse",
+    "select_size": "Vælg en størrelse",
+    "no_image": "Intet billede"
   },
   "cart": {
     "title": "Din kurv",
@@ -34,7 +38,12 @@
     "title": "Betaling",
     "shipping": "Levering",
     "payment": "Betaling",
-    "complete_order": "Gennemfør ordre"
+    "complete_order": "Gennemfør ordre",
+    "address": "Adresse",
+    "postal_code": "Postnummer",
+    "city": "By",
+    "order_summary": "Ordreoversigt",
+    "order_completed": "Ordre gennemført!"
   },
   "account": {
     "login": "Log ind",
@@ -44,7 +53,21 @@
     "email": "E-mail",
     "password": "Adgangskode",
     "first_name": "Fornavn",
-    "last_name": "Efternavn"
+    "last_name": "Efternavn",
+    "welcome": "Velkommen!",
+    "error_try_again": "Fejl – prøv igen",
+    "your_orders": "Dine ordrer",
+    "no_orders_yet": "Ingen ordrer endnu",
+    "back_to_orders": "← Tilbage til ordrer"
+  },
+  "footer": {
+    "description": "Håndplukkede kunsttryk til dit hjem.",
+    "links": "Links",
+    "contact": "Kontakt",
+    "copyright": "© {year} PrintStore. Alle rettigheder forbeholdes."
+  },
+  "common": {
+    "something_went_wrong": "Noget gik galt"
   },
   "cookie": {
     "message": "Vi bruger cookies for at forbedre din oplevelse.",

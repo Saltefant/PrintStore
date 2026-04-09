@@ -11,7 +11,7 @@ const toast = useToast()
 
 async function handleAddToCart() {
   if (!selectedVariantId.value) {
-    toast.add({ title: 'Vælg en størrelse', color: 'red' })
+    toast.add({ title: t('product.select_size'), color: 'red' })
     return
   }
   await addToCart(selectedVariantId.value, 1)

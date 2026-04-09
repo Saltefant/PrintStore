@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ ssr: false })
 const route = useRoute()
+const { t } = useI18n()
 const { order, pending } = useOrder(route.params.id as string)
 
 watchEffect(() => {
@@ -13,7 +14,7 @@ watchEffect(() => {
 <template>
   <div class="max-w-4xl mx-auto px-6 py-12">
     <NuxtLink to="/account/orders" class="text-sm text-gray-500 hover:text-gray-700 mb-6 inline-block">
-      ← Tilbage til ordrer
+      {{ t('account.back_to_orders') }}
     </NuxtLink>
 
     <div v-if="pending" class="animate-pulse">
