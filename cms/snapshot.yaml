@@ -1,0 +1,219 @@
+version: 1
+directus: "11.0.0"
+
+collections:
+  - collection: pages
+    meta:
+      icon: article
+      note: CMS pages with translations
+      translations: null
+      display_template: "{{slug}}"
+    schema:
+      name: pages
+
+  - collection: pages_translations
+    meta:
+      hidden: true
+      icon: import_export
+      junction_field: pages_id
+    schema:
+      name: pages_translations
+
+  - collection: seo
+    meta:
+      icon: search
+      note: SEO metadata with translations
+      display_template: "{{slug}}"
+    schema:
+      name: seo
+
+  - collection: seo_translations
+    meta:
+      hidden: true
+      icon: import_export
+      junction_field: seo_id
+    schema:
+      name: seo_translations
+
+fields:
+  - collection: pages
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+      has_auto_increment: true
+    meta:
+      hidden: true
+
+  - collection: pages
+    field: slug
+    type: string
+    schema:
+      is_unique: true
+      is_nullable: false
+    meta:
+      interface: input
+      required: true
+
+  - collection: pages
+    field: status
+    type: string
+    schema:
+      default_value: draft
+    meta:
+      interface: select-dropdown
+      options:
+        choices:
+          - { text: Published, value: published }
+          - { text: Draft, value: draft }
+      width: half
+
+  - collection: pages
+    field: translations
+    type: alias
+    meta:
+      interface: translations
+      options:
+        languageField: languages_code
+
+  - collection: pages_translations
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+      has_auto_increment: true
+    meta:
+      hidden: true
+
+  - collection: pages_translations
+    field: pages_id
+    type: integer
+    schema:
+      foreign_key_table: pages
+      foreign_key_column: id
+    meta:
+      hidden: true
+
+  - collection: pages_translations
+    field: languages_code
+    type: string
+    meta:
+      hidden: true
+
+  - collection: pages_translations
+    field: title
+    type: string
+    meta:
+      interface: input
+      required: true
+
+  - collection: pages_translations
+    field: body
+    type: text
+    meta:
+      interface: input-rich-text-html
+
+  - collection: seo
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+      has_auto_increment: true
+    meta:
+      hidden: true
+
+  - collection: seo
+    field: slug
+    type: string
+    schema:
+      is_unique: true
+      is_nullable: false
+    meta:
+      interface: input
+      required: true
+
+  - collection: seo
+    field: og_image
+    type: uuid
+    schema:
+      foreign_key_table: directus_files
+      foreign_key_column: id
+    meta:
+      interface: file-image
+      special:
+        - file
+
+  - collection: seo
+    field: translations
+    type: alias
+    meta:
+      interface: translations
+      options:
+        languageField: languages_code
+
+  - collection: seo_translations
+    field: id
+    type: integer
+    schema:
+      is_primary_key: true
+      has_auto_increment: true
+    meta:
+      hidden: true
+
+  - collection: seo_translations
+    field: seo_id
+    type: integer
+    schema:
+      foreign_key_table: seo
+      foreign_key_column: id
+    meta:
+      hidden: true
+
+  - collection: seo_translations
+    field: languages_code
+    type: string
+    meta:
+      hidden: true
+
+  - collection: seo_translations
+    field: meta_title
+    type: string
+    meta:
+      interface: input
+
+  - collection: seo_translations
+    field: meta_description
+    type: text
+    meta:
+      interface: input-multiline
+
+relations:
+  - collection: pages_translations
+    field: pages_id
+    related_collection: pages
+    meta:
+      one_field: translations
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: languages_code
+
+  - collection: pages_translations
+    field: languages_code
+    related_collection: directus_languages
+    meta:
+      one_field: null
+
+  - collection: seo_translations
+    field: seo_id
+    related_collection: seo
+    meta:
+      one_field: translations
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: languages_code
+
+  - collection: seo_translations
+    field: languages_code
+    related_collection: directus_languages
+    meta:
+      one_field: null

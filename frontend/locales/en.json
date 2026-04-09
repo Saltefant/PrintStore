@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart",
+    "account": "Account"
+  },
+  "home": {
+    "hero_title": "Art for your walls",
+    "hero_subtitle": "Explore our curated collection of art prints",
+    "shop_now": "Shop now"
+  },
+  "shop": {
+    "title": "Shop",
+    "filter_category": "Category",
+    "filter_price": "Price",
+    "all_categories": "All categories",
+    "no_products": "No products found"
+  },
+  "product": {
+    "add_to_cart": "Add to cart",
+    "size": "Size",
+    "price": "Price",
+    "description": "Description"
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Proceed to checkout",
+    "remove": "Remove"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping",
+    "payment": "Payment",
+    "complete_order": "Complete order"
+  },
+  "account": {
+    "login": "Log in",
+    "register": "Create account",
+    "logout": "Log out",
+    "orders": "Orders",
+    "email": "Email",
+    "password": "Password",
+    "first_name": "First name",
+    "last_name": "Last name"
+  },
+  "cookie": {
+    "message": "We use cookies to improve your experience.",
+    "accept": "Accept",
+    "decline": "Decline"
+  }
+}

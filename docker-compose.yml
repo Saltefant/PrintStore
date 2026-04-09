@@ -1,0 +1,100 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB_MEDUSA}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - printstore
+
+  medusa:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      MEDUSA_JWT_SECRET: ${MEDUSA_JWT_SECRET}
+      MEDUSA_COOKIE_SECRET: ${MEDUSA_COOKIE_SECRET}
+      MEDUSA_ADMIN_CORS: ${MEDUSA_ADMIN_CORS}
+      MEDUSA_STORE_CORS: ${MEDUSA_STORE_CORS}
+      MEDUSA_AUTH_CORS: ${MEDUSA_AUTH_CORS}
+      STRIPE_API_KEY: ${STRIPE_API_KEY}
+      S3_ENDPOINT: ${S3_ENDPOINT}
+      S3_BUCKET: ${S3_BUCKET}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      S3_REGION: ${S3_REGION}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM: ${SMTP_FROM}
+    ports:
+      - "9000:9000"
+    networks:
+      - printstore
+
+  directus:
+    image: directus/directus:latest
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      SECRET: ${DIRECTUS_SECRET}
+      ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ${POSTGRES_DB_DIRECTUS}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      STORAGE_LOCATIONS: s3
+      STORAGE_S3_DRIVER: s3
+      STORAGE_S3_KEY: ${S3_ACCESS_KEY_ID}
+      STORAGE_S3_SECRET: ${S3_SECRET_ACCESS_KEY}
+      STORAGE_S3_BUCKET: ${S3_BUCKET}
+      STORAGE_S3_REGION: ${S3_REGION}
+      STORAGE_S3_ENDPOINT: ${S3_ENDPOINT}
+    ports:
+      - "8055:8055"
+    volumes:
+      - directus_uploads:/directus/uploads
+    networks:
+      - printstore
+
+  nuxt:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - medusa
+      - directus
+    environment:
+      NUXT_PUBLIC_MEDUSA_BACKEND_URL: ${NUXT_PUBLIC_MEDUSA_BACKEND_URL}
+      NUXT_PUBLIC_DIRECTUS_URL: ${NUXT_PUBLIC_DIRECTUS_URL}
+      NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+      NUXT_PUBLIC_DEFAULT_LOCALE: ${NUXT_PUBLIC_DEFAULT_LOCALE}
+    ports:
+      - "3000:3000"
+    networks:
+      - printstore
+
+volumes:
+  postgres_data:
+  directus_uploads:
+
+networks:
+  printstore:
+    driver: bridge
